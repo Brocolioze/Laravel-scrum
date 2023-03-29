@@ -17,11 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('/hallo', function () {
-    return 'hallo';
+Route::get('/administrateur/index', function () {
+    return view('administrateur');
 });
 
-Route::get('/apprenants/index',function(){
-    return view('apprenants/index');
+Route::get('/user/index',function(){
+    return view('App/Http/Controllers/UserController@User');
     });
