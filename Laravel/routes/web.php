@@ -17,10 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/administrateur/index', function () {
-    return view('administrateur');
-});
-
+Route::get('/administrateur', 'App\Http\Controller\AdministrateurController@index');
 /*Route::get('/user/index',function(){
     return view('App/Http/Controllers/UserController@User');
     });*/
