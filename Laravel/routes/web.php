@@ -21,6 +21,6 @@ Route::get('/administrateur/index', function () {
     return view('administrateur');
 });
 
-Route::get('/user/index',function(){
+/*Route::get('/user/index',function(){
     return view('App/Http/Controllers/UserController@User');
-    });
+    });*/
