@@ -6,6 +6,8 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title text-uppercase mb-0">Manage Users</h5>
+
+                <h1>{{$title}}</h1>
             </div>
             <div class="table-responsive">
                 <table class="table no-wrap user-table mb-0">

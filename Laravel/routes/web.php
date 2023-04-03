@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/administrateur', 'App\Http\Controller\AdministrateurController@index');
+Route::get('/administrateur', 'App\Http\Controllers\AdminController@index');
 /*Route::get('/user/index',function(){
     return view('App/Http/Controllers/UserController@User');
     });*/
