@@ -1,3 +1,7 @@
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/navbar.css') }}">
+
+<script src="{{ asset('js/navbar.js') }}"></script> 
+
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 <div class="container">
 <div class="row">

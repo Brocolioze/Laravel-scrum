@@ -8,7 +8,7 @@
 	<meta name="viewport"
 		content="width=device-width,
 				initial-scale=1.0">
-	<title>GeeksForGeeks</title>
+	<title>Article</title>
 	<link rel="stylesheet"
 		href="style.css">
 	<link rel="stylesheet"
@@ -25,7 +25,7 @@
 	<header>
 
 		<div class="logosec">
-			<div class="logo">GeeksForGeeks</div>
+			<div class="logo">Article</div>
 			<img src=
 "https://media.geeksforgeeks.org/wp-content/uploads/20221210182541/Untitled-design-(30).png"
 				class="icn menuicn"
