@@ -19,6 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/administrateur', 'App\Http\Controllers\AdminController@index');
-/*Route::get('/user/index',function(){
-    return view('App/Http/Controllers/UserController@User');
-    });*/
+
+Route::get('/article', 'App\Http\Controllers\ArticleController@index');
