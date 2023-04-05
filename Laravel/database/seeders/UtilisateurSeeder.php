@@ -25,6 +25,15 @@ class UtilisateurSeeder extends Seeder
                 'email'=>'f.boaz@cegeptr.qc.ca',
                 'mot_de_passe'=>'qwerty123' 
 
+            ],
+
+            [
+                'matricule'=>'2080393' ,
+                'nom'=>'Marc' ,
+                'prenom'=>'Antoine' ,
+                'email'=>'m.antoine@cegeptr.qc.ca',
+                'mot_de_passe'=>'qwerty123' 
+
             ]
         ]);
     }
