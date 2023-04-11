@@ -9,5 +9,8 @@
         "boostrap": "^2.0.0",
         "laravel-vite-plugin": "^0.7.2",
         "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "bcrypt": "^5.1.0"
     }
 }
