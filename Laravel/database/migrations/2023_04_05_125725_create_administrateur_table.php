@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('email', 50);
             $table->string('mot_de_passe',100);
             $table->boolean('admin');
+            $table->timestamps();
           
         });
     }

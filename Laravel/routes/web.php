@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers;
+use App\Http\Controllers\UtilisateurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +18,36 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/a-propos',function(){
+    return "A propos";
+});
+
+Route::get('/nous-contacter',function(){
+    return "Nous contacter";
+});
+
+
+/*********  INCRIPTION  *********/
+
+//Route::get('/inscription', 'App\Http\Controllers\UtilisateurController@form_register');
+
+Route::get('/inscription', [UtilisateurController::class, 'form_register']);
+
+Route::post('/inscription/traitement', [UtilisateurController::class, 'traitement_register']);
+
+
+/*********  CONNECTION *********/
+
+//Route::get('/connection', 'App\Http\Controllers\UtilisateurController@form_connection');
+
+Route::get('/connection', [UtilisateurController::class, 'form_connection']);
+Route::post('/connection/traitement', [UtilisateurController::class, 'traitement_connection']);
+
+
+/***************************** */
+
 Route::get('/administrateur', 'App\Http\Controllers\AdminController@index');
 
 Route::get('/article', 'App\Http\Controllers\ArticleController@index');
+
+
