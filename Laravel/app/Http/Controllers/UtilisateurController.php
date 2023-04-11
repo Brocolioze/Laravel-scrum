@@ -35,7 +35,7 @@ class UtilisateurController extends Controller
         $utilisateur -> email = $request->input('email');
         $utilisateur -> save();
 
-        return redirect('/inscription')->with('status','Votre compte a ete cree. ');
+        return redirect('/connection')->with('status','Votre compte a ete cree. ');
     }
 
 

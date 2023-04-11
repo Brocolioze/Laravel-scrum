@@ -16,9 +16,9 @@ return new class extends Migration
 
 
 
-        if (!Schema::hasTable('utilisateur')) {
+        if (!Schema::hasTable('utilisateurs')) {
 
-        Schema::create('utilisateur', function (Blueprint $table) {
+        Schema::create('utilisateurs', function (Blueprint $table) {
           $table->id();
             $table->string('matricule', 7);
             $table->string('nom', 50);
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('utilisateur');
+        Schema::dropIfExists('utilisateurs');
     }
 };
