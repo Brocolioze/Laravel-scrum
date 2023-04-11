@@ -32,7 +32,7 @@
             <div class="row">
               <div class="col-12">
                 <label for="mot_de_passe" class="form-label">Mot de passe</label>
-                <input id="mot_de_passe" class="form-control" type="password" name="mot_de_passe" placeholder="Choisissez un mot de passe">
+                <input id="mot_de_passe" class="form-control" type="text" name="mot_de_passe" placeholder="Choisissez un mot de passe">
               </div>
             </div>
 

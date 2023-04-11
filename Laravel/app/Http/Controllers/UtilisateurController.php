@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Utilisateur;
+use Illuminate\Support\Facades\Hash;
 
 class UtilisateurController extends Controller
 {
@@ -52,10 +53,11 @@ class UtilisateurController extends Controller
 
         $utilisateur -> Utilisateur::where('email',$request->input('email'))->first();
 
-        if($client){
+        if($utilisateur){
 
-            if(Hash::check($request->input('mot_de_passe'), $client->mot_de_passe)){
-                $request->session()->put('client',$client);
+            if(Hash::check($request->input('mot_de_passe'), $utilisateur->mot_de_passe)){
+
+                $request->session()->put('utilisateur', $utilisateur);
 
                 return redirect('/administrateur');
 

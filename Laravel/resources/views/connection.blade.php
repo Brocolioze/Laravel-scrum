@@ -18,7 +18,7 @@
 
   <!-- Password input -->
   <div class="form-outline md-6">
-    <input type="password" id="mot_de_passe" name="mot_de_passe"  class="form-control" />
+    <input type="text" id="mot_de_passe" name="mot_de_passe"  class="form-control" />
     <label class="form-label" for="form2Example2">Password</label>
   </div>
 
