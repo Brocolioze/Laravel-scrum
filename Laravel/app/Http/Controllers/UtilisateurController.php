@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Utilisateur;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UtilisateurController extends Controller
 {
@@ -17,12 +18,14 @@ class UtilisateurController extends Controller
 
     public function traitement_register(Request $request){
 
-        $request->validate([
+        
+
+        $request->Validate([
 
             'nom' => 'required',
             'prenom' => 'required',
             'matricule' => 'required',
-            'email' => 'email|required|unique:utilisateur',
+            'email' => 'required  | regex:[a-z]{2,}\.([a-z]{2,})@cegeptr\.qc\.ca',
             'mot_de_passe' => 'required',
         ]);
 
@@ -48,6 +51,20 @@ class UtilisateurController extends Controller
 
     public function traitement_connection (Request $request){
 
+        $log = Auth::attempt([$request->input('email'),'password'=>$request->input('mot_de_passe')]);
+
+
+            if($log)
+
+                 {
+
+                         return redirect('/administrateur');
+
+
+                    }
+
+        /*
+
         $utilisateur -> mot_de_passe = bcrypt($request->input('mot_de_passe'));
         $utilisateur -> email = $request->input('email');
 
@@ -59,18 +76,16 @@ class UtilisateurController extends Controller
 
                 $request->session()->put('utilisateur', $utilisateur);
 
-                return redirect('/administrateur');
+                */
 
-            }else{
+               // return redirect('/administrateur');
+
+            else{
 
                 return back()->with('status','Mot de passe incorrecte');
             }
-        }
-        else{
-
-                return back()->with('status','Compte inexistant');
-
-        }
+        
+        
 
     }
 }
