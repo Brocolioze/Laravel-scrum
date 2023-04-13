@@ -50,7 +50,7 @@ class UtilisateurController extends Controller
     }
 
     public function traitement_connection (Request $request){
-
+/*
         $log = Auth::attempt([$request->input('email'),'password'=>$request->input('mot_de_passe')]);
 
 
@@ -62,10 +62,11 @@ class UtilisateurController extends Controller
 
 
                     }
+*/
+       
 
-        /*
+        $utilisateur -> mot_de_passe = Hash::check($request->input('mot_de_passe'));
 
-        $utilisateur -> mot_de_passe = bcrypt($request->input('mot_de_passe'));
         $utilisateur -> email = $request->input('email');
 
         $utilisateur -> Utilisateur::where('email',$request->input('email'))->first();
@@ -76,16 +77,20 @@ class UtilisateurController extends Controller
 
                 $request->session()->put('utilisateur', $utilisateur);
 
-                */
+              
+         return redirect('/administrateur');
 
-               // return redirect('/administrateur');
+               
+
+           
+        
+            }
 
             else{
 
                 return back()->with('status','Mot de passe incorrecte');
             }
-        
-        
 
     }
+}
 }
