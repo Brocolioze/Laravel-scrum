@@ -11,7 +11,7 @@ class AdminController extends Controller
 
         $title = 'Vous etes en mode administrateur';
 
-        return view('pages/administrateur',compact('title'));
+        return view('administrateur',compact('title'));
     }
 }
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Utilisateur;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class UtilisateurController extends Controller
 {
@@ -20,15 +21,17 @@ class UtilisateurController extends Controller
 
         
 
-        $request->Validate([
+        $request->validate([
 
             'nom' => 'required',
             'prenom' => 'required',
             'matricule' => 'required',
-            'email' => 'required  | regex:[a-z]{2,}\.([a-z]{2,})@cegeptr\.qc\.ca',
+            'email' => 'required',
             'mot_de_passe' => 'required',
         ]);
 
+
+        
         $utilisateur = new Utilisateur();
 
         $utilisateur -> nom = $request->input('nom');
@@ -39,6 +42,8 @@ class UtilisateurController extends Controller
         $utilisateur -> save();
 
         return redirect('/connection')->with('status','Votre compte a ete cree. ');
+
+
     }
 
 
@@ -49,23 +54,36 @@ class UtilisateurController extends Controller
         return view('connection',compact('title'));
     }
 
+
+
+
     public function traitement_connection (Request $request){
-/*
-        $log = Auth::attempt([$request->input('email'),'password'=>$request->input('mot_de_passe')]);
+  
+
+        $request->validate([
+          
+            'email' => 'required',
+            'mot_de_passe' => 'required'
+        ]);
 
 
-            if($log)
+        $utilisateur = Utilisateur::where('email', $request->email)->first();
 
-                 {
+        if (   $utilisateur) {
 
-                         return redirect('/administrateur');
+        if (Hash::check($request->mot_de_passe,   $utilisateur->mot_de_passe)) {
 
 
-                    }
-*/
+
+            return view('administrateur');
+        }
+
+        return view('administrateur');
+    
+    }
        
-
-        $utilisateur -> mot_de_passe = Hash::check($request->input('mot_de_passe'));
+/*
+      
 
         $utilisateur -> email = $request->input('email');
 
@@ -78,10 +96,10 @@ class UtilisateurController extends Controller
                 $request->session()->put('utilisateur', $utilisateur);
 
               
-         return redirect('/administrateur');
+         return redirect('/administrateur');*/
 
                
-
+/*
            
         
             }
@@ -91,6 +109,6 @@ class UtilisateurController extends Controller
                 return back()->with('status','Mot de passe incorrecte');
             }
 
-    }
+    }-*/
 }
 }
