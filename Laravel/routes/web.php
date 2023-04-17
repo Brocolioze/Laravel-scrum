@@ -26,6 +26,14 @@ Route::get('/nous-contacter',function(){
     return "Nous contacter";
 });
 
+Route::get('/utilisateurs/index',[UtilisateurController::class, 'index']);
+Route::get('/utilisateurs/create',[UtilisateurController::class, 'create'])->name('utilisateurs.create');
+Route::get('/utilisateurs/destroy',[UtilisateurController::class, 'destroy'])->name('utilisateurs.destroy');
+Route::get('/utilisateurs/show',[UtilisateurController::class, 'show'])->name('utilisateurs.show');
+Route::get('/utilisateurs/edit',[UtilisateurController::class, 'edit'])->name('utilisateurs.edit');
+
+
+
 
 /*********  INCRIPTION  *********/
 
