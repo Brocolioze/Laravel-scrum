@@ -22,8 +22,8 @@
         <tr>
             <th>Matricule</th>
             <th>Nom</th>
-            <th>Details</th>
-            <th width="280px">Action</th>
+            <th>Prenom</th>
+            <th width="280px">Email</th>
         </tr>
         @foreach ($utilisateurs as $utilisateur)
         <tr>
@@ -48,6 +48,5 @@
         @endforeach
     </table>
   
-    {!! $utilisateurs->links() !!}
-      
-@endsect
+   
+@endsection
