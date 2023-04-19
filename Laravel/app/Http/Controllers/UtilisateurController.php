@@ -12,15 +12,17 @@ class UtilisateurController extends Controller
 {
 
 
-
+// Montre la liste des utilisateurs
     public function index()
     {
         $utilisateurs = Utilisateur::latest()->paginate(5);
     
-        return view('utilisateurs.index',compact('utilisateurs'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('utilisateurs.index',compact('utilisateurs'));
     }
 
+
+    
+// Montre le formulaire de creation des utilisateurs
     public function create()
     {
         return view('utilisateurs.create');
@@ -44,16 +46,20 @@ class UtilisateurController extends Controller
                         ->with('success','Product created successfully.');
     }
 
+
+    // Montre les informations  des utilisateurs
     public function show(Utilisateur $utilisateur)
     {
         return view('utilisateurs.show',compact('utilisateur'));
     } 
 
+// editions des utilisateurs
     public function edit(Utilisateur $utilisateur)
     {
         return view('utilisateurs.edit',compact('utilisateur'));
     }
 
+    // Maj des utilisateurs
     public function update(Request $request, Utilisateur $utilisateur)
     {
         $request->validate([
@@ -70,12 +76,19 @@ class UtilisateurController extends Controller
                         ->with('success','Product updated successfully');
     }
 
+    //suppression  des utilisateurs
     public function destroy(Utilisateur $utilisateur)
     {
-        $product->delete();
+
+  
+        $utilisateur::find($id)->delete();
+        $utilisateur->delete();
+      
     
         return redirect()->route('utilisateurs.index')
-                        ->with('success','Product deleted successfully');
+        ->withSuccess(__('User deleted successfully.'));
+
+        
     }
 
 
@@ -138,19 +151,28 @@ class UtilisateurController extends Controller
 
         $utilisateur = Utilisateur::where('email', $request->email)->first();
 
-        if (   $utilisateur) {
+        if ($utilisateur) {
 
         if (Hash::check($request->mot_de_passe,   $utilisateur->mot_de_passe)) {
 
 
 
-            return view('administrateur');
+            return view('/utilisateurs/index');
         }
 
-        return view('administrateur');
+        dump('ERROR');
+        die();
     
     }
        
+}
+
+//deconnexion
+public function deconnexion()
+{
+    auth()->logout();
+
+    return redirect('../admistrateur');
 }
 
 

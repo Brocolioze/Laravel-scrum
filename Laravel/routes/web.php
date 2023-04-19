@@ -26,11 +26,20 @@ Route::get('/nous-contacter',function(){
     return "Nous contacter";
 });
 
-Route::get('/utilisateurs/index',[UtilisateurController::class, 'index']);
+
+
+Route::get('/utilisateurs/index',[UtilisateurController::class, 'index'])->name('utilisateurs.index')->middleware('App\Http\Middleware\Auth');
 Route::get('/utilisateurs/create',[UtilisateurController::class, 'create'])->name('utilisateurs.create');
+Route::post('/utilisateurs/create',[UtilisateurController::class, 'store'])->name('utilisateurs.create');
 Route::get('/utilisateurs/destroy',[UtilisateurController::class, 'destroy'])->name('utilisateurs.destroy');
-Route::get('/utilisateurs/show',[UtilisateurController::class, 'show'])->name('utilisateurs.show');
-Route::get('/utilisateurs/edit',[UtilisateurController::class, 'edit'])->name('utilisateurs.edit');
+Route::get('/utilisateurs/show/{utilisateur}',[UtilisateurController::class, 'show'])->name('utilisateurs.show');
+Route::get('/utilisateurs/edit/{utilisateur}',[UtilisateurController::class, 'edit'])->name('utilisateurs.edit');
+Route::patch('/utilisateurs/update/{utilisateur}',[UtilisateurController::class, 'update'])->name('utilisateurs.update');
+
+Route::delete('/utilisateurs/delete/{utilisateur}',[UtilisateurController::class, 'destroy'])->name('utilisateurs.delete');
+
+Route::get('/deconnexion', [UtilisateurController::class, 'deconnexion']);
+
 
 
 

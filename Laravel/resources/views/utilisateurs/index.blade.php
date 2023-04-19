@@ -20,6 +20,7 @@
    
     <table class="table table-bordered">
         <tr>
+            <th>ID</th>
             <th>Matricule</th>
             <th>Nom</th>
             <th>Prenom</th>
@@ -27,26 +28,33 @@
         </tr>
         @foreach ($utilisateurs as $utilisateur)
         <tr>
+            <td>{{ $utilisateur->id }}</td>
             <td>{{ $utilisateur->matricule }}</td>
             <td>{{ $utilisateur->nom}}</td>
             <td>{{ $utilisateur->prenom }}</td>
             <td>{{ $utilisateur->email}}</td>
             <td>
-                <form action="{{ route('utilisateurs.destroy',$utilisateur->id) }}" method="POST">
-   
+                <form method="POST"  action="{{ route('utilisateurs.destroy',$utilisateur->id) }}" >
+
+                @method('DELETE')
+                @csrf
+
+            
+      
                     <a class="btn btn-info" href="{{ route('utilisateurs.show',$utilisateur->id) }}">Show</a>
     
                     <a class="btn btn-primary" href="{{ route('utilisateurs.edit',$utilisateur->id) }}">Edit</a>
    
-                    @csrf
-                    @method('DELETE')
-      
+                  
+             
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </td>
         </tr>
         @endforeach
     </table>
+
+    <a href="/deconnexion" class="button">Déconnexion</a>
   
    
 @endsection
