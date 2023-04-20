@@ -16,7 +16,7 @@ class Auth
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->guest()) {
-            flash("Vous devez être connecté pour voir cette page.")->error();
+            dump("Vous devez être connecté pour voir cette page.");
 
             return redirect('/connexion');
         }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Utilisateur;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Validator;
 use App\User;
 
 class UtilisateurController extends Controller
@@ -31,6 +32,24 @@ class UtilisateurController extends Controller
 
     public function store(Request $request)
     {
+
+        // Form validation
+      $validator = Validator::make($request->all(), [
+        'nom' => 'required|min:3',
+        'prenom' => 'required|min:3',
+        'matricule' => 'required|min:7',
+        'email' => 'required',
+        'mot_de_passe' => 'required|min:8'
+     ]);
+   
+        if($validator->fails()){
+
+                 return redirect('inscription')->withErrors($validator)->withInput();
+
+            }
+
+
+        /*
         $request->validate([
            
             'nom' => 'required',
@@ -44,6 +63,8 @@ class UtilisateurController extends Controller
      
         return redirect()->route('utilisateurs.index')
                         ->with('success','Product created successfully.');
+
+                        */
     }
 
 
@@ -105,11 +126,11 @@ class UtilisateurController extends Controller
 
         $request->validate([
 
-            'nom' => 'required',
-            'prenom' => 'required',
-            'matricule' => 'required',
+            'nom' => 'required|min:3',
+            'prenom' => 'required|min:3',
+            'matricule' => 'required|min:7',
             'email' => 'required',
-            'mot_de_passe' => 'required'
+            'mot_de_passe' => 'required|min:8'
         ]);
 
 
@@ -142,10 +163,12 @@ class UtilisateurController extends Controller
     public function traitement_connection (Request $request){
   
 
+        $title = "Page de connection";
+
         $request->validate([
           
             'email' => 'required',
-            'mot_de_passe' => 'required'
+            'mot_de_passe' => 'required|min:8'
         ]);
 
 
@@ -155,15 +178,21 @@ class UtilisateurController extends Controller
 
         if (Hash::check($request->mot_de_passe,   $utilisateur->mot_de_passe)) {
 
+            $utilisateurs = Utilisateur::all(); 
+
+            return view('/utilisateurs/index',compact('utilisateurs'));
 
 
-            return view('/utilisateurs/index');
+        }else{
+
+            return view('/connection',compact('title'));
         }
 
-        dump('ERROR');
-        die();
-    
-    }
+      
+    }else{
+
+            return view('/connection',compact('title'));
+        }
        
 }
 
@@ -172,7 +201,7 @@ public function deconnexion()
 {
     auth()->logout();
 
-    return redirect('../admistrateur');
+    return redirect('../administrateur');
 }
 
 

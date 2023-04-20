@@ -9,6 +9,11 @@
 
 @csrf
 
+<ul class="error"> 
+        @foreach($errors->all() as $error) 
+        <li>{{ $error }}</li> 
+        @endforeach 
+    </ul> 
             <div class="row">
               <div class="col-md-6">
                 <label for="nom" class="form-label">Nom</label>
