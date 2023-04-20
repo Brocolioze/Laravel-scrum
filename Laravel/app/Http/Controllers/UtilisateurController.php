@@ -33,7 +33,7 @@ class UtilisateurController extends Controller
     public function store(Request $request)
     {
 
-        // Form validation
+        
       $validator = Validator::make($request->all(), [
         'nom' => 'required|min:3',
         'prenom' => 'required|min:3',
@@ -84,11 +84,11 @@ class UtilisateurController extends Controller
     public function update(Request $request, Utilisateur $utilisateur)
     {
         $request->validate([
-            'nom' => 'required',
-            'prenom' => 'required',
-            'matricule' => 'required',
-            'email' => 'required',
-            'mot_de_passe' => 'required'
+            'nom' => 'required|min:3',
+        'prenom' => 'required|min:3',
+        'matricule' => 'required|min:7',
+        'email' => 'required',
+        'mot_de_passe' => 'required|min:8'
         ]);
     
         $utilisateur->update($request->all());

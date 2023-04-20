@@ -10,12 +10,7 @@
 
 <h1>{{$title}}</h1>
 
-  @foreach(@errors->all() as $error)
-
-  <div class="text-red-500"> {{$errors}}</div>
-
-  @endforeach
-
+ 
 
   <!-- Email input -->
   <div class="form-outline md-6">
