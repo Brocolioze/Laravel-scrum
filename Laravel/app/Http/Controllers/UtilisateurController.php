@@ -168,27 +168,13 @@ class UtilisateurController extends Controller
 
         $title = "Page de connection";
 
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|exists:utilisateurs',
-            'password' => 'required|string'
-        ]);
-    
-        if ($validator->fails()) {
-            flash('Email Does Not Exists')->error();
-            
-            // or 
-    
-            $request->session()->flash('message', 'Email Does Not Exists');
-        }
-
-        /*
+        
 
         $request->validate([
           
             'email' => 'required',
             'mot_de_passe' => 'required|min:8'
         ]);
-*/
 
         $utilisateur = Utilisateur::where('email', $request->email)->first();
 

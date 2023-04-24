@@ -12,10 +12,16 @@
 
 
 
-@foreach($errors->all() as $error) 
-        <div class="alert alert-danger" role="alert">{{ $error }}</div> 
-        @endforeach 
-
+@if ($errors->any())
+<div class="alert alert-danger">
+  <ul>
+    @foreach ($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+  </ul>
+</div>
+@endif
+ 
 
   <!-- Email input -->
   <div class="form-outline md-6">
