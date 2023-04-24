@@ -13,14 +13,11 @@ class Auth
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
-        if (auth()->guest()) {
-            dump("Vous devez être connecté pour voir cette page.");
-
-            return redirect('/connexion');
+    public function authenticate() {
+        if (Auth::attempt(['email' => $email, 'mot_de_passe' => $mot_de_passe])) {
+        
+           // Authentication passed...
+           return redirect()->intended('/utilisateurs/index');
         }
-
-        return $next($request);
-    }
+}
 }

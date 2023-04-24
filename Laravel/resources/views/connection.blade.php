@@ -10,7 +10,12 @@
 
 <h1>{{$title}}</h1>
 
- 
+
+
+@foreach($errors->all() as $error) 
+        <div class="alert alert-danger" role="alert">{{ $error }}</div> 
+        @endforeach 
+
 
   <!-- Email input -->
   <div class="form-outline md-6">
@@ -36,7 +41,7 @@
 
 
   <!-- Submit button -->
-  <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+  <button type="submit" class="btn btn-primary btn-block mb-4">Connexion</button>
 
   
   </div>

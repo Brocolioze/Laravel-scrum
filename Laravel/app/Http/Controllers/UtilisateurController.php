@@ -35,10 +35,10 @@ class UtilisateurController extends Controller
 
         
       $validator = Validator::make($request->all(), [
-        'nom' => 'required|min:3',
-        'prenom' => 'required|min:3',
+        'nom' => 'required|min:2',
+        'prenom' => 'required|min:2',
         'matricule' => 'required|min:7',
-        'email' => 'required',
+        'email' => 'required|max:20',
         'mot_de_passe' => 'required|min:8'
      ]);
    
@@ -84,7 +84,7 @@ class UtilisateurController extends Controller
     public function update(Request $request, Utilisateur $utilisateur)
     {
         $request->validate([
-            'nom' => 'required|min:3',
+        'nom' => 'required|min:3',
         'prenom' => 'required|min:3',
         'matricule' => 'required|min:7',
         'email' => 'required',
@@ -201,7 +201,10 @@ public function deconnexion()
 {
     auth()->logout();
 
-    return redirect('../administrateur');
+    $request->session()->invalidate();
+ 
+
+    return redirect('/');
 }
 
 

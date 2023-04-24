@@ -1,7 +1,9 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UtilisateurController;
+use Illuminate\Auth\Middleware\Authenticate;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,19 +30,25 @@ Route::get('/nous-contacter',function(){
 
 
 
-Route::get('/utilisateurs/index',[UtilisateurController::class, 'index'])->name('utilisateurs.index')->middleware('App\Http\Middleware\Auth');
-Route::get('/utilisateurs/create',[UtilisateurController::class, 'create'])->name('utilisateurs.create')->middleware('App\Http\Middleware\Auth');
-Route::post('/utilisateurs/create',[UtilisateurController::class, 'store'])->name('utilisateurs.create')->middleware('App\Http\Middleware\Auth');
-Route::get('/utilisateurs/destroy',[UtilisateurController::class, 'destroy'])->name('utilisateurs.destroy')->middleware('App\Http\Middleware\Auth');
-Route::get('/utilisateurs/show/{utilisateur}',[UtilisateurController::class, 'show'])->name('utilisateurs.show')->middleware('App\Http\Middleware\Auth');
-Route::get('/utilisateurs/edit/{utilisateur}',[UtilisateurController::class, 'edit'])->name('utilisateurs.edit')->middleware('App\Http\Middleware\Auth');
-Route::patch('/utilisateurs/update/{utilisateur}',[UtilisateurController::class, 'update'])->name('utilisateurs.update')->middleware('App\Http\Middleware\Auth');
 
-Route::delete('/utilisateurs/delete/{utilisateur}',[UtilisateurController::class, 'destroy'])->name('utilisateurs.delete')->middleware('App\Http\Middleware\Auth');
-
-Route::get('/deconnexion', [UtilisateurController::class, 'deconnexion'])->middleware('App\Http\Middleware\Auth');
+/* ******** ADMINISTRATION *********/
+Route::group(['middleware' => 'auth'], function () {
 
 
+
+Route::get('/utilisateurs/index',[UtilisateurController::class, 'index'])->name('utilisateurs.index');
+Route::get('/utilisateurs/create',[UtilisateurController::class, 'create'])->name('utilisateurs.create');
+Route::post('/utilisateurs/create',[UtilisateurController::class, 'store'])->name('utilisateurs.create');
+Route::get('/utilisateurs/destroy',[UtilisateurController::class, 'destroy'])->name('utilisateurs.destroy');
+Route::get('/utilisateurs/show/{utilisateur}',[UtilisateurController::class, 'show'])->name('utilisateurs.show');
+Route::get('/utilisateurs/edit/{utilisateur}',[UtilisateurController::class, 'edit'])->name('utilisateurs.edit');
+Route::patch('/utilisateurs/update/{utilisateur}',[UtilisateurController::class, 'update'])->name('utilisateurs.update');
+
+Route::delete('/utilisateurs/delete/{utilisateur}',[UtilisateurController::class, 'destroy'])->name('utilisateurs.delete');
+
+Route::get('/deconnexion', [UtilisateurController::class, 'deconnexion']);
+
+});
 
 
 
@@ -55,16 +63,17 @@ Route::post('/inscription/traitement', [UtilisateurController::class, 'traitemen
 
 /*********  CONNECTION *********/
 
-//Route::get('/connection', 'App\Http\Controllers\UtilisateurController@form_connection');
 
-Route::get('/connection', [UtilisateurController::class, 'form_connection']);
+
+Route::namespace('Auth')->group(function () {
+
+//Route::get('/connection', 'App\Http\Controllers\UtilisateurController@form_connection');
+// Route::get('/connection', [UtilisateurController::class, 'form_connection']);
+
+
+Route::get('login', [ 'as' => 'login', 'uses' => 'UtilisateurController@form_connection'])->name('utilisateurs.connection');
+
+
 Route::post('/connection/traitement', [UtilisateurController::class, 'traitement_connection']);
 
-
-/***************************** */
-
-Route::get('/administrateur', 'App\Http\Controllers\AdminController@index');
-
-Route::get('/article', 'App\Http\Controllers\ArticleController@index');
-
-
+});

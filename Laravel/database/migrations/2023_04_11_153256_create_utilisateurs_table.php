@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('matricule', 7);
             $table->string('nom', 50);
             $table->string('prenom', 50);
-            $table->string('email',100);
-            $table-> string('mot_de_passe',100);
+            $table->string('email',50);
+            $table->string('mot_de_passe',100);
             $table->timestamps();
          
         });
