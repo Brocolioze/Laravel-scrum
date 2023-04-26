@@ -32,9 +32,9 @@ class UtilisateurController extends Controller
 
 
     public function store(Request $request)
-    {
+        {
 
-        $messages = array('email.regex' => 'Your email id is not valid.');
+     
 
       $validator = Validator::make($request->all(), [
         'nom' => 'required|min:2',
@@ -43,7 +43,7 @@ class UtilisateurController extends Controller
         'email' => 'required|email|unique:users,email,'.$utilisateurs->id,
         'mot_de_passe' => 'required|min:8'
 
-     ] , $messages );
+     ] );
    
         if($validator->fails()){
 
@@ -109,8 +109,7 @@ class UtilisateurController extends Controller
         $utilisateur->delete();
       
     
-        return redirect()->route('utilisateurs.index')
-        ->withSuccess(__('User deleted successfully.'));
+        return redirect()->route('utilisateurs.index');
 
         
     }
@@ -138,18 +137,33 @@ class UtilisateurController extends Controller
 
 
         
-        $utilisateur = new Utilisateur();
 
-        $utilisateur -> nom = $request->input('nom');
-        $utilisateur -> prenom = $request->input('prenom');
-        $utilisateur -> matricule = $request->input('matricule');
-        $utilisateur -> mot_de_passe = bcrypt($request->input('mot_de_passe'));
-        $utilisateur -> email = $request->input('email');
-        $utilisateur -> save();
+        $verif_email = Utilisateur::where('email', $request->email)->first();
 
-        return redirect('/connection')->with('status','Votre compte a ete cree. ');
+        if($verif_email){
+
+            $maileroor =  "email deja existant";
+            return redirect('inscription')->withErrors($maileroor)->withInput();
+
+        }else{
+
+            $utilisateur = new Utilisateur();
+
+            $utilisateur -> nom = $request->input('nom');
+            $utilisateur -> prenom = $request->input('prenom');
+            $utilisateur -> matricule = $request->input('matricule');
+            $utilisateur -> mot_de_passe = bcrypt($request->input('mot_de_passe'));
+            $utilisateur -> email = $request->input('email');
+            $utilisateur -> save();
+    
+            return redirect('/connection')->with('status','Votre compte a ete cree. ');
+    
+    
 
 
+        }
+
+       
     }
 
 

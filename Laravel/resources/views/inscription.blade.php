@@ -10,6 +10,9 @@
 @csrf
 
 
+
+
+
         @if ($errors->any())
 <div class="alert alert-danger">
   <ul>
@@ -18,7 +21,7 @@
     @endforeach
   </ul>
 </div>
-@endif
+        @endif
  
             <div class="row">
               <div class="col-md-6">
