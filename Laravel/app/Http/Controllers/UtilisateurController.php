@@ -39,7 +39,8 @@ class UtilisateurController extends Controller
         'nom' => 'required|min:2',
         'prenom' => 'required|min:2',
         'matricule' => 'required|min:7',
-        'email' => 'required | regex:[a-z]{1,}\.([a-z]{2,})@cegeptr\.qc\.ca',
+        'email' => 'required|email:rfc,dns',
+        //'email' =>  array('required', 'regex:#^[a-z]{1,}\.([a-z]{2,})@cegeptr\.qc\.ca'),
         'mot_de_passe' => 'required|min:8'
       ]);
    
@@ -69,7 +70,7 @@ class UtilisateurController extends Controller
             'nom' => 'required|min:3',
             'prenom' => 'required|min:3',
             'matricule' => 'required|min:7',
-            'email' => ['required', 'unique:users', 'email', 'unique:users,email' . $user->id],
+            'email' => 'required|email:rfc,dns',
             'mot_de_passe' => 'required|min:8'
         ]);
     
@@ -102,7 +103,7 @@ class UtilisateurController extends Controller
             'nom' => 'required|min:3',
             'prenom' => 'required|min:3',
             'matricule' => 'required|min:7',
-            'email' => 'required',
+            'email' => 'required|email:rfc,dns',
             'mot_de_passe' => 'required|min:8'
 
         ]);
