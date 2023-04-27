@@ -6,37 +6,38 @@
             <div class="pull-left">
                 <h2>Liste des Utilisateurs</h2>
             </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('utilisateurs.create') }}"> Create New utilisateur</a>
-            </div>
+          
         </div>
     </div>
   
    
-    <table class="table table-bordered">
+    <table class="table table-hover table-dark">
+    <thead>
         <tr>
             <th>ID</th>
             <th>Matricule</th>
             <th>Nom</th>
             <th>Prenom</th>
-            <th width="280px">Email</th>
+            <th>Email</th>
+        
+            <th><a class="btn btn-success" href="{{ route('utilisateurs.create') }}"> Creer un nouvel utilisateur</a></th>
+           
         </tr>
-     
+    </thead>
+    <tbody>
         @foreach ($utilisateurs as $utilisateur)
         <tr>
             <td>{{ $utilisateur->id }}</td>
             <td>{{ $utilisateur->matricule }}</td>
-            <td>{{ $utilisateur->nom}}</td>
+            <td>{{ $utilisateur->nom }}</td>
             <td>{{ $utilisateur->prenom }}</td>
-            <td>{{ $utilisateur->email}}</td>
+            <td>{{ $utilisateur->email }}</td>
             <td>
                 <form method="POST"  action="{{ route('utilisateurs.destroy',$utilisateur->id) }}" >
 
                 @method('DELETE')
                 @csrf
 
-            
-      
                     <a class="btn btn-info" href="{{ route('utilisateurs.show',$utilisateur->id) }}">Show</a>
     
                     <a class="btn btn-primary" href="{{ route('utilisateurs.edit',$utilisateur->id) }}">Edit</a>
@@ -48,9 +49,10 @@
             </td>
         </tr>
         @endforeach
+    </tbody>
     </table>
 
-    <a href="/deconnexion" class="button">Déconnexion</a>
+    <a href="/deconnexion" class="btn btn-danger">Déconnexion</a>
   
    
 @endsection

@@ -45,6 +45,7 @@ class UtilisateurController extends Controller
    
         if($validator->fails())
         {
+
             return redirect('inscription')->withErrors($validator)->withInput();
         }
     }
@@ -75,19 +76,17 @@ class UtilisateurController extends Controller
         $utilisateur->update($request->all());
     
         return redirect()->route('utilisateurs.index')
-                        ->with('success','Product updated successfully');
+                         ->with('success','Product updated successfully');
     }
 
     //Suppression des utilisateurs
     public function destroy(Utilisateur $utilisateur)
     {
-  
         $utilisateur::find($id)->delete();
         $utilisateur->delete();
 
-         return redirect()->route('utilisateurs.index');
+        return redirect()->route('utilisateurs.index');
     }
-
 
     public function form_register()
     {
@@ -98,7 +97,6 @@ class UtilisateurController extends Controller
 
     public function traitement_register(Request $request)
     {
-
         $request->validate([
 
             'nom' => 'required|min:3',
@@ -109,25 +107,27 @@ class UtilisateurController extends Controller
 
         ]);
 
-        $verif_email = Utilisateur::where('email', $request->email)->first();
+           $verif_email = Utilisateur::where('email', $request->email)->first();
 
-        if($verif_email) {
+        if($verif_email)
+        {
 
-            $maileroor =  "email deja existant";
+                 $maileroor =  "email deja existant";
                  return redirect('inscription')->withErrors($maileroor)->withInput();
 
-         } else {
+        }
+        else{
 
-            $utilisateur = new Utilisateur();
-            $utilisateur -> nom = $request->input('nom');
-            $utilisateur -> prenom = $request->input('prenom');
-            $utilisateur -> matricule = $request->input('matricule');
-            $utilisateur -> mot_de_passe = bcrypt($request->input('mot_de_passe'));
-            $utilisateur -> email = $request->input('email');
-            $utilisateur -> save();
+                 $utilisateur = new Utilisateur();
+                 $utilisateur -> nom = $request->input('nom');
+                 $utilisateur -> prenom = $request->input('prenom');
+                 $utilisateur -> matricule = $request->input('matricule');
+                 $utilisateur -> mot_de_passe = bcrypt($request->input('mot_de_passe'));
+                 $utilisateur -> email = $request->input('email');
+                 $utilisateur -> save();
 
                 return redirect('/connection')->with('status','Votre compte a ete cree. ');
-        }
+            }
        
     }
 
