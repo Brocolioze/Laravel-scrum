@@ -65,10 +65,10 @@ Route::post('/inscription/traitement', [UtilisateurController::class, 'traitemen
 
 /*********  CONNECTION *********/
 
-//Route::get('login', [ 'as' => 'login', 'uses' => 'UtilisateurController@form_connection'])->name('utilisateurs.connection');
-
+//Route::get('/connexion', [ 'as' => 'login', 'uses' => 'UtilisateurController@form_connection'])->name('utilisateurs.connection');
+ 
 //Route::get('/connection', 'App\Http\Controllers\UtilisateurController@form_connection');
-Route::get('/connexion', [UtilisateurController::class, 'form_connection']);
+Route::get('/connexion', [UtilisateurController::class, 'form_connection'])->name('login');
 
 
 Route::post('/connection/traitement', [UtilisateurController::class, 'traitement_connection']);

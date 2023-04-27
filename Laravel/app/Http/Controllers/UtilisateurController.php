@@ -39,7 +39,7 @@ class UtilisateurController extends Controller
         'nom' => 'required|min:2',
         'prenom' => 'required|min:2',
         'matricule' => 'required|min:7',
-        'email' => 'required|email|unique:users,email,'.$utilisateurs->id,
+        'email' => 'required | regex:[a-z]{1,}\.([a-z]{2,})@cegeptr\.qc\.ca',
         'mot_de_passe' => 'required|min:8'
       ]);
    
