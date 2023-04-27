@@ -126,7 +126,7 @@ class UtilisateurController extends Controller
                  $utilisateur -> email = $request->input('email');
                  $utilisateur -> save();
 
-                return redirect('/connection')->with('status','Votre compte a ete cree. ');
+                return redirect('/connexion')->with('status','Votre compte a ete cree. ');
             }
        
     }
@@ -134,15 +134,15 @@ class UtilisateurController extends Controller
 
     public function form_connection(){
 
-        $title = "Page de connection";
+        $title = "Page de connexion";
 
-        return view('connection',compact('title'));
+        return view('connexion',compact('title'));
     }
 
     public function traitement_connection (Request $request)
     {
   
-        $title = "Page de connection";
+        $title = "Page de connexion";
 
         $request->validate([
           
@@ -163,13 +163,13 @@ class UtilisateurController extends Controller
 
         }else{
 
-            return view('/connection',compact('title'));
+            return view('/connexion',compact('title'));
         }
 
       
     }else{
 
-            return view('/connection',compact('title'));
+            return view('/connexion',compact('title'));
         }
        
 }

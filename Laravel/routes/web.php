@@ -20,7 +20,7 @@ use Illuminate\Auth\Middleware\Authenticate;
 Route::get('/', function () {
     return view('welcome');
 
-})->name('login');
+});
 
 Route::get('/a-propos',function(){
     return "A propos";
@@ -68,7 +68,7 @@ Route::post('/inscription/traitement', [UtilisateurController::class, 'traitemen
 //Route::get('login', [ 'as' => 'login', 'uses' => 'UtilisateurController@form_connection'])->name('utilisateurs.connection');
 
 //Route::get('/connection', 'App\Http\Controllers\UtilisateurController@form_connection');
-Route::get('/connection', [UtilisateurController::class, 'form_connection']);
+Route::get('/connexion', [UtilisateurController::class, 'form_connection']);
 
 
 Route::post('/connection/traitement', [UtilisateurController::class, 'traitement_connection']);
